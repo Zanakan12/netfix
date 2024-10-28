@@ -1,4 +1,3 @@
-
 # Plateforme de Services - Django
 
 Une plateforme permettant aux entreprises de créer des services (peinture, plomberie, jardinage, etc.) et aux clients de les demander. Ce projet utilise le framework Django pour le backend et offre des fonctionnalités d’authentification, de gestion de profils et de services.
@@ -8,7 +7,8 @@ Une plateforme permettant aux entreprises de créer des services (peinture, plom
 - [Fonctionnalités](#fonctionnalités)
 - [Prérequis](#prérequis)
 - [Installation](#installation)
-- [Utilisation](#utilisation)
+- [Méthodologie SCRUM](#méthodologie-scrum)
+- [Modélisation MERISE](#modélisation-merise)
 - [Structure du Projet](#structure-du-projet)
 - [Commandes Utiles](#commandes-utiles)
 - [Contributions](#contributions)
@@ -72,12 +72,106 @@ Ce projet de plateforme de services permet aux entreprises de proposer leurs ser
 
 Le site sera accessible à [http://localhost:8000](http://localhost:8000).
 
-### Utilisation
+---
 
-- Accédez à la page d’accueil et inscrivez-vous en tant que **Client** ou **Entreprise**.
-- Une fois connecté, accédez à votre **profil** pour gérer vos informations.
-- Les entreprises peuvent créer des services, visibles par les clients, qui peuvent en faire la demande.
-- Utilisez l’interface **Admin Django** pour vérifier les utilisateurs, les services, et les demandes de service.
+### Méthodologie SCRUM
+
+SCRUM est une méthodologie agile permettant d’organiser le développement en sprints. Voici un plan SCRUM pour le projet.
+
+#### Rôles dans le projet
+
+- **Product Owner (PO)** : Définit les besoins et priorise les tâches.
+- **Scrum Master** : Facilite l’équipe et supervise l’application de SCRUM.
+- **Équipe de développement** : Implémente les tâches en suivant le backlog.
+
+#### Product Backlog (Liste des Fonctionnalités)
+
+1. **US01** : Inscription client
+2. **US02** : Inscription entreprise
+3. **US03** : Connexion utilisateur
+4. **US04** : Profil client
+5. **US05** : Profil entreprise
+6. **US06** : Création de service
+7. **US07** : Demande de service
+8. **US08** : Page de services populaires
+9. **US09** : Filtrage par catégorie
+10. **US10** : Interface admin
+
+#### Découpage en Sprints
+
+- **Sprint 1** : Authentification et inscription (US01, US02, US03)
+- **Sprint 2** : Gestion des profils et services (US04, US05, US06)
+- **Sprint 3** : Demande de services et pages publiques (US07 à US10)
+
+À chaque sprint, un **Daily Standup** est recommandé pour suivre l’avancement, et chaque sprint se termine par une **Revue** et une **Rétrospective**.
+
+---
+
+### Modélisation MERISE
+
+La modélisation MERISE est utilisée pour concevoir la structure de données et les relations entre les entités du projet.
+
+#### Modèle Conceptuel des Données (MCD)
+
+1. **Utilisateur** : `id_utilisateur`, `email`, `password`, `type_utilisateur`
+2. **Client** : `id_client`, `nom`, `prenom`, `date_naissance`
+3. **Entreprise** : `id_entreprise`, `nom_entreprise`, `domaine_travail`
+4. **Service** : `id_service`, `nom_service`, `description`, `domaine`, `prix_par_heure`, `date_creation`
+5. **Demande de Service** : `id_demande`, `adresse`, `duree_estimee`, `date_demande`, `cout_estime`
+
+#### Modèle Logique des Données (MLD)
+
+| Table | Attributs |
+|-------|-----------|
+| Utilisateur | id_utilisateur (PK), email (unique), password, type_utilisateur |
+| Client | id_client (PK, FK vers Utilisateur), nom, prenom, date_naissance |
+| Entreprise | id_entreprise (PK, FK vers Utilisateur), nom_entreprise, domaine_travail |
+| Service | id_service (PK), id_entreprise (FK vers Entreprise), nom_service, description, domaine, prix_par_heure, date_creation |
+| Demande de Service | id_demande (PK), id_client (FK vers Client), id_service (FK vers Service), adresse, duree_estimee, date_demande, cout_estime |
+
+#### Modèle Physique des Données (MPD)
+
+```sql
+CREATE TABLE Utilisateur (
+    id_utilisateur SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    type_utilisateur VARCHAR(10) CHECK (type_utilisateur IN ('Client', 'Entreprise'))
+);
+
+CREATE TABLE Client (
+    id_client INTEGER PRIMARY KEY REFERENCES Utilisateur(id_utilisateur),
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    date_naissance DATE
+);
+
+CREATE TABLE Entreprise (
+    id_entreprise INTEGER PRIMARY KEY REFERENCES Utilisateur(id_utilisateur),
+    nom_entreprise VARCHAR(255) NOT NULL,
+    domaine_travail VARCHAR(50) CHECK (domaine_travail IN ('Air Conditioner', 'Carpentry', ...))
+);
+
+CREATE TABLE Service (
+    id_service SERIAL PRIMARY KEY,
+    id_entreprise INTEGER REFERENCES Entreprise(id_entreprise),
+    nom_service VARCHAR(255) NOT NULL,
+    description TEXT,
+    domaine VARCHAR(50) CHECK (domaine IN ('Air Conditioner', 'Carpentry', ...)),
+    prix_par_heure DECIMAL(10, 2),
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Demande_de_Service (
+    id_demande SERIAL PRIMARY KEY,
+    id_client INTEGER REFERENCES Client(id_client),
+    id_service INTEGER REFERENCES Service(id_service),
+    adresse VARCHAR(255),
+    duree_estimee INTEGER,
+    date_demande TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    cout_estime DECIMAL(10, 2)
+);
+```
 
 ### Structure du Projet
 
