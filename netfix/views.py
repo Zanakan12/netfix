@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 from users.models import User, Company
 from services.models import Service
@@ -19,3 +22,7 @@ def company_profile(request, name):
         company=Company.objects.get(user=user)).order_by("-date")
 
     return render(request, 'users/profile.html', {'user': user, 'services': services})
+
+def LoginUserView(request):
+    # Logique pour gérer la connexion de l'utilisateur
+    return render(request, 'users/login.html')

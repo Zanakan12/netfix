@@ -1,26 +1,26 @@
-{% extends 'main/base.html' %} 
+{% extends 'main/base.html' %}
 
 {% block title %}
-  User Type
+  Login
 {% endblock %}
 
 {% block content %}
-    <p class="choice_text">Choose whether you want to be a customer or a company</p>
-    
+    <p class="choice_text">Please log in to continue</p>
+
     <div style="margin-top: 70px;">
         <div style="margin-left: 50px;" class="choice">
-            <div class="company img" id="company">
-                <a href="/register/company">
-                    <img src="/static/css/company.png" alt="company" class="user-type-image">
+            <div class="img" id="login-company">
+                <a href="/login/company">
+                    <img src="/static/css/company.png" alt="Login as Company" class="login-image">
                 </a>
             </div>
             <p class="label_images">Company</p>
         </div>
 
         <div style="float: right; margin-right: 50px;" class="choice">
-            <div class="img" id="customer">
-                <a href="/register/customer">
-                    <img src="/static/css/customer.png" alt="customer" class="user-type-image">
+            <div class="img" id="login-customer">
+                <a href="/login/customer">
+                    <img src="/static/css/customer.png" alt="Login as Customer" class="login-image">
                 </a>
             </div>
             <p>Customer</p>
@@ -28,7 +28,7 @@
     </div>
 
     <style>
-        .user-type-image {
+        .login-image {
             width: 150px;  /* Définir la largeur de l'image */
             height: 150px; /* Définir la hauteur de l'image */
             object-fit: cover; /* Ajuster l'image pour couvrir l'espace défini */
