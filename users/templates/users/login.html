@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% block title %} LOGIN {%endblock%}
+
+{%block content%}
+
+<h2> LOG IN </h2>
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">ENTER</button>
+</form>
+{%endblock%}
