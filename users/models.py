@@ -1,25 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import UserManager
+
 
 
 class User(AbstractUser):
     is_company = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
+    #birth=models.DateField(default='2000-01-01')
     email = models.CharField(max_length=100, unique=True)
-
+    objects = UserManager()
 
 class Customer(models.Model):
     user =  models.CharField(max_length=30)
-    birth = models.DateField
+    birth = models.DateField(default='2000-01-01')
 
     def __str__(self):
-        return super().__str__()
+        return self.user
 
 
 class Company(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, primary_key=True)
+    User, on_delete=models.CASCADE, primary_key=True)
     field = models.CharField(max_length=70, choices=(('Air Conditioner', 'Air Conditioner'),
                                                      ('All in One', 'All in One'),
                                                      ('Carpentry', 'Carpentry'),

@@ -11,7 +11,7 @@ def register(request):
 
 
 class CustomerSignUpView(CreateView):
-    model = User
+    #model = User
     form_class = CustomerSignUpForm
     template_name = 'users/register_customer.html'
 
@@ -44,4 +44,3 @@ def LoginUserView(request):
     context={}
     context['form']=UserLoginForm()
     return render(request,'users/login.html',context)
-

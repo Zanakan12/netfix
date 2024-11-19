@@ -1,3 +1,6 @@
 ### Historique des modification
 
-- installation python et django 
+- installation of python et django 
+-fixe modele problem need : user and birth day
+- add route for the user login
+-
