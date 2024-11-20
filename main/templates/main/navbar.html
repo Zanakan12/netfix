@@ -21,9 +21,10 @@
         <ul>
             {% if request.user.is_authenticated%}
                 <li><a href="/company/{{ request.user.username }}">Profile</a></li>
-            {%endif%}
+            {%else%}
                 <li><a href="/login/">LOGIN</a></li>
                 <li><a href="/register/">REGISTER</a></li>
+            {% endif%}
             {% if request.user.is_authenticated%}
                 <li><a href="/logout/">LOGOUT</a></li>
             {%endif%}

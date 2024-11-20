@@ -8,13 +8,13 @@ from django.contrib.auth.models import UserManager
 class User(AbstractUser):
     is_company = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
-    #birth=models.DateField(default='2000-01-01')
+    birth=models.DateField(null=True, default='2000-01-01')
     email = models.CharField(max_length=100, unique=True)
     objects = UserManager()
 
 class Customer(models.Model):
     user =  models.CharField(max_length=30)
-    birth = models.DateField(default='2000-01-01')
+    birth = models.DateField(null=True, default='2000-01-01')
 
     def __str__(self):
         return self.user
