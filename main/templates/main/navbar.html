@@ -20,7 +20,11 @@
         <div style="margin-left: auto; display: flex; gap: 1rem;">
         <ul>
             {% if request.user.is_authenticated%}
-                <li><a href="/company/{{ request.user.username }}">Profile</a></li>
+                {% if user.is_customer%}
+                    <li><a href="/customer/{{ request.user.username }}">Profile</a></li>
+                {% else %}
+                    <li><a href="/customer/{{ request.user.username }}">Profile</a></li>
+                {% endif %}
             {%else%}
                 <li><a href="/login/">LOGIN</a></li>
                 <li><a href="/register/">REGISTER</a></li>

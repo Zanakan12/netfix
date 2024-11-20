@@ -57,7 +57,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'netfix.urls'
-
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

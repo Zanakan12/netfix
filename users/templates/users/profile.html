@@ -5,17 +5,32 @@
 
 {% block content %}
     {% if user.is_customer %}
-        <div style="display: ruby;">
-            <h1>{{ user.username }} ({{user_age}} y/o)</h1>
-            <p>{{ user.email }}</p>
-            <p style="float: right;">Customer</p>
-        </div>
+    <h1 style align='center'>Welcome, {{ user.username }}</h1>
+    <table><thead>
+        <tr>
+            <td>Age: {{profile.birth}} </td>
+        </tr></thead>
+    <tbody>
+        <tr>
+            <td>Email: {{ user.email }}</td>
+        </tr>
+    </tbody>
+    </table>
     {% else %}
-        <div style="display: ruby;">
-            <h1>{{ user.username }}</h1>
-            <p> {{ user.email }}</p>
-            <p style="float: right;">{{user.company.field}} Company</p>
-        </div>
+    <h1>Welcome, {{ user.username }} Company</h1>
+    <table><thead>
+        <tr>
+            <td>Email: {{ user.email }}</td>
+        </tr></thead>
+    <tbody>
+        <tr>
+            <td>Field: {{user.company.field}} Company</td>
+        </tr>
+    </tbody>
+    </table>
+            
+            
+        
        {% endif %}
     {% if 'customer' in request.path %}
         <p class="title">Previous Requested Services</p>

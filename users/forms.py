@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, authenticate
 from django.db import transaction
 from django.core.exceptions import ValidationError
-
 from .models import User, Company, Customer
 
 
@@ -35,8 +34,12 @@ def validate_email(value):
 
 
 class CompanySignUpForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder':'Email'}))
     field = forms.ChoiceField(choices=FIELD_CHOICE)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Enter Password'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Validation password'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2'] 
@@ -56,9 +59,11 @@ class CompanySignUpForm(UserCreationForm):
         return user
 
 class CustomerSignUpForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(required= True, widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
     birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Enter Password'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Validation password'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2','birth']
@@ -82,15 +87,16 @@ class CustomerSignUpForm(UserCreationForm):
             user.save()
         return user
 
-class UserLoginForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(UserLoginForm, self).__init__(*args, **kwargs)
-
-    email = forms.EmailField(widget=forms.TextInput(
-        attrs={'placeholder': 'Enter Email'}))
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Nom d’utilisateur'
+        })
+    )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Enter Password'}))
-
-    def __init__(self, *args, **kwargs):
-        super(UserLoginForm, self).__init__(*args, **kwargs)
-        self.fields['email'].widget.attrs['autocomplete'] = 'off'
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Mot de passe'
+        })
+    )

@@ -10,7 +10,6 @@ class User(AbstractUser):
     is_customer = models.BooleanField(default=False)
     birth=models.DateField(null=True, default='2000-01-01')
     email = models.CharField(max_length=100, unique=True)
-    objects = UserManager()
 
 class Customer(models.Model):
     user =  models.CharField(max_length=30)
