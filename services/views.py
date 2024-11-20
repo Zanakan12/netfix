@@ -5,7 +5,15 @@ from users.models import Company, Customer, User
 
 from .models import Service
 from .forms import CreateNewService, RequestServiceForm
+from django.contrib import messages
 
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
 
 def service_list(request):
     services = Service.objects.all().order_by("-date")
@@ -18,7 +26,20 @@ def index(request, id):
 
 
 def create(request):
-    form=CreateNewService
+    if request.method == 'POST':
+        form=CreateNewService(request.POST)
+        user_id = request.user.id
+        if form.is_valid():
+            company_instance = Company.objects.get(user_id=user_id)
+            Service.objects.create(
+                company=company_instance,
+                name= form.cleaned_data['name'],
+                description= form.cleaned_data['description'],
+                price_hour= form.cleaned_data['price_hour']
+            )
+        messages.success(request, "Votre service a été crée avec succès !")
+    else:
+        form=CreateNewService
     return render(request, 'services/create.html',{'form':form})
 
 def service_field(request, field):
