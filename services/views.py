@@ -18,8 +18,8 @@ def index(request, id):
 
 
 def create(request):
-    return render(request, 'services/create.html', {})
-
+    form=CreateNewService
+    return render(request, 'services/create.html',{'form':form})
 
 def service_field(request, field):
     # search for the service present in the url
