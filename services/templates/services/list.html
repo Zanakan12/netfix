@@ -10,9 +10,16 @@
     <div class='services_list'>
         {% if services %}
             {% for service in services.all %}
+            <table><thead>
+                <tr>
+                  <th><a href="/services/{{service.id}}">{{service}}</a></th>
+                  <td>{{service.price_hour}}$</td>
+                  <td>by {{service.company.user}}</td>
+                </tr></thead>
+              </table>
             {% endfor %}
         {% else %}
             <h2>Sorry No services available yet</h2>
         {% endif %}
-     </div>
+    </div>
 {% endblock %}

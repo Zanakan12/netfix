@@ -17,7 +17,8 @@ MESSAGE_TAGS = {
 
 def service_list(request):
     services = Service.objects.all().order_by("-date")
-    return render(request, 'services/list.html', {'services': services})
+    service= Service.objects.all()
+    return render(request, 'services/list.html', {'services': services, 'service':service})
 
 
 def index(request, id):
@@ -35,9 +36,11 @@ def create(request):
                 company=company_instance,
                 name= form.cleaned_data['name'],
                 description= form.cleaned_data['description'],
-                price_hour= form.cleaned_data['price_hour']
+                price_hour= form.cleaned_data['price_hour'],
+                field=form.cleaned_data['field']
             )
         messages.success(request, "Votre service a été crée avec succès !")
+        return render(request,'services/field.html')
     else:
         form=CreateNewService
     return render(request, 'services/create.html',{'form':form})
