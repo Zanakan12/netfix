@@ -60,11 +60,25 @@ def request_service(request, id):
         form = RequestServiceForm(request.POST)
         if form.is_valid():
             user = get_object_or_404(Customer, pk=request.user.id)
+            customer = get_object_or_404(Customer, user=request.user)
+            #company = get_object_or_404(Company, user=request.user)
+            service = Service.objects.get(id=id)
+            name = customer.user.username
+            company = service.company.user
+            custom_field= service.field
+            description = service.description
+            job_name= service.name
             RequestServiceModel.objects.create(
                 user_id=user,
                 service_id=id,
                 address=form.cleaned_data['address'],
-                interval=form.cleaned_data['interval']
+                interval=form.cleaned_data['interval'],
+                name = name,
+                company = company,
+                custom_field= custom_field,
+                description = description,
+                salary=form.cleaned_data['interval']*service.price_hour,
+                job_name = job_name
             )
     else:
         form = RequestServiceForm()

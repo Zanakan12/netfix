@@ -35,8 +35,18 @@ class Service(models.Model):
 
 
 class RequestServiceModel(models.Model):
+    name = models.CharField(max_length=50, null=False, default='rafta')
     user_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    company = models.CharField(max_length=50, null=False, default='Default Company')
+    job_name = models.CharField(max_length=50, null=False, default='Masson')
+    service_id = models.IntegerField(default=0)
+    custom_field = models.CharField(max_length= 50, null= False, default='souillon')
     address = models.CharField(max_length=50, null=False)
     interval= models.IntegerField(validators=[MinValueValidator(
         0), MaxValueValidator(8)], default=0)
-    service_id = models.IntegerField(default=0)
+    salary = models.IntegerField(default=0)
+    description= models.CharField(max_length=150, null=False, default='nothing here')
+    request_date = models.DateTimeField(auto_now=True, null=False)
+    
+    
+    

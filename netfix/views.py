@@ -9,11 +9,10 @@ def home(request):
 
 
 def customer_profile(request,name):
-    users= User.objects.get(username=name)
-    sh = RequestServiceModel.objects.filter(
-        Customer.objects.get(user=users)
-    )
-    return render(request, 'users/profile.html',{'users':users, 'name':name, 'sh':sh})
+    users = User.objects.get(username=name)
+    customer = Customer.objects.get(user=users)
+    sh = RequestServiceModel.objects.filter(user_id=customer)
+    return render(request, 'users/profile.html',{'users':users, 'name':name, 'sh':sh,})
 
 def company_profile(request, name):
     # fetches the company user and all of the services available by it

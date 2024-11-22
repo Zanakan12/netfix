@@ -39,15 +39,28 @@
     {% endif %}
     {% if user.is_customer %}
         {% for service in sh %}
-            <div>
-                <a href="/services/{{service.service.id}}">{{service.service.name}}</a> ({{service.service.field}})
-                <p style="margin: 0; display: inline-block;"> ❱❱ {{service.price}}</p>
-                <p style="margin: 0; display: inline-block;"> ❱❱ {{ service.request_date }}</p>
-                <p style="float: right; margin: 0;">
-                    by <a href="/company/{{service.service.company.user}}">{{service.service.company.user}}</a>
-                </p> 
-            </div>
-            <div class="line"></div>
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; margin: 20px;">
+            <h2 style="color: #4CAF50;">Payment Confirmation and Thank You for Using Our Services</h2>
+            <p>Dear <strong>{{service.name}}</strong>,</p>
+            <p>
+                We sincerely thank you for choosing our services. We are pleased to confirm that the payment 
+                for the service "<strong>{{service.job_name}}</strong>" has been successfully received and processed.
+            </p>
+            <h3>Service Details:</h3>
+            <ul>
+                <li><strong>Service Rendered:</strong> {{service.custom_field}}</li>
+                <li><strong>Amount Paid:</strong> {{service.salary}}€</li>
+                <li><strong>Payment Date:</strong> {{service.request_date}}</li>
+                <li><strong>Payment Method:</strong> Credit card</li>
+            </ul>
+            <p>
+                We hope our service met your expectations. If you have any questions or need further assistance, 
+                please feel free to contact us at  <a href="mailto:rafta74@gmail.com">rafta74@gmail.com</a> | or 
+                call us at <strong>06 12 34 56 78</strong>.
+            </p>
+            <p>Thank you again for your trust. We look forward to serving you in the future.</p>
+        </div>
+        <hr style="border: 1px solid #ddd; margin-top: 20px;">
         {% endfor %}
     {% else %}
         {% for service in services %}
