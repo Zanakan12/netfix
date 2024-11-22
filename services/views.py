@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 
 from users.models import Company, Customer, User
 
-from .models import Service
+from .models import Service, RequestServiceModel
 from .forms import CreateNewService, RequestServiceForm
 from django.contrib import messages
 
@@ -53,5 +53,19 @@ def service_field(request, field):
     return render(request, 'services/field.html', {'services': services, 'field': field})
 
 
+from django.shortcuts import get_object_or_404
+
 def request_service(request, id):
-    return render(request, 'services/request_service.html', {})
+    if request.method == 'POST':
+        form = RequestServiceForm(request.POST)
+        if form.is_valid():
+            user = get_object_or_404(Customer, pk=request.user.id)
+            RequestServiceModel.objects.create(
+                user_id=user,
+                service_id=id,
+                address=form.cleaned_data['address'],
+                interval=form.cleaned_data['interval']
+            )
+    else:
+        form = RequestServiceForm()
+    return render(request, 'services/request_service.html', {'form': form})

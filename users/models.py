@@ -12,11 +12,11 @@ class User(AbstractUser):
     email = models.CharField(max_length=100, unique=True)
 
 class Customer(models.Model):
-    user =  models.CharField(max_length=30)
+    user =  models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     birth = models.DateField(null=True, default='2000-01-01')
 
     def __str__(self):
-        return self.user
+        return str(self.user.id) + ' - ' + self.user.username
 
 
 class Company(models.Model):

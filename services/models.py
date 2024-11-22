@@ -32,3 +32,11 @@ class Service(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class RequestServiceModel(models.Model):
+    user_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    address = models.CharField(max_length=50, null=False)
+    interval= models.IntegerField(validators=[MinValueValidator(
+        0), MaxValueValidator(8)], default=0)
+    service_id = models.IntegerField(default=0)

@@ -85,6 +85,9 @@ class CustomerSignUpForm(UserCreationForm):
         user.is_customer = True
         if commit:
             user.save()
+            Customer.objects.create(
+                user=user,
+            )
         return user
 
 class CustomLoginForm(AuthenticationForm):

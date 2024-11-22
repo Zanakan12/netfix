@@ -22,6 +22,3 @@ class CreateNewService(forms.Form):
 
         self.fields['name'].widget.attrs['autocomplete'] = 'off'
 
-
-class RequestServiceForm(forms.Form):
-    pass

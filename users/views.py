@@ -12,7 +12,7 @@ def register(request):
 
 
 class CustomerSignUpView(CreateView):
-    #model = User
+    model = Customer
     form_class = CustomerSignUpForm
     template_name = 'users/register_customer.html'
 
