@@ -23,7 +23,7 @@
                 {% if user.is_customer%}
                     <li><a href="/customer/{{ request.user.username }}">Profile</a></li>
                 {% else %}
-                    <li><a href="/customer/{{ request.user.username }}">Profile</a></li>
+                    <li><a href="/company/{{ request.user.username }}">Profile</a></li>
                 {% endif %}
             {%else%}
                 <li><a href="/login/">LOGIN</a></li>
