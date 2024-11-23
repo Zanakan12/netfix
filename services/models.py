@@ -47,6 +47,6 @@ class RequestServiceModel(models.Model):
     salary = models.IntegerField(default=0)
     description= models.CharField(max_length=150, null=False, default='nothing here')
     request_date = models.DateTimeField(auto_now=True, null=False)
-    
+    nb_request=models.IntegerField(default=0)
     
     

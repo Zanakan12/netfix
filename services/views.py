@@ -68,6 +68,7 @@ def request_service(request, id):
             custom_field= service.field
             description = service.description
             job_name= service.name
+            nb_request= RequestServiceModel.objects(id=id)
             RequestServiceModel.objects.create(
                 user_id=user,
                 service_id=id,
@@ -78,8 +79,13 @@ def request_service(request, id):
                 custom_field= custom_field,
                 description = description,
                 salary=form.cleaned_data['interval']*service.price_hour,
-                job_name = job_name
+                job_name = job_name,
+                nb_request = nb_request
             )
     else:
         form = RequestServiceForm()
     return render(request, 'services/request_service.html', {'form': form})
+
+def most_requested(request):
+    
+    return render(request,'services/most_requested.html')
