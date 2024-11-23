@@ -14,22 +14,22 @@ class Service(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(
         0), MaxValueValidator(5)], default=0)
     choices = (
-        ('Air Conditioner', 'Air Conditioner'),
-        ('Carpentry', 'Carpentry'),
-        ('Electricity', 'Electricity'),
-        ('Gardening', 'Gardening'),
-        ('Home Machines', 'Home Machines'),
-        ('House Keeping', 'House Keeping'),
-        ('Interior Design', 'Interior Design'),
-        ('Locks', 'Locks'),
-        ('Painting', 'Painting'),
-        ('Plumbing', 'Plumbing'),
-        ('Water Heaters', 'Water Heaters'),
+        ('air-conditioner', 'Air Conditioner'),
+        ('carpentry', 'Carpentry'),
+        ('electricity', 'Electricity'),
+        ('gardening', 'Gardening'),
+        ('home-machines', 'Home Machines'),
+        ('house-keeping', 'House Keeping'),
+        ('interior-design', 'Interior Design'),
+        ('locks', 'Locks'),
+        ('painting', 'Painting'),
+        ('plumbing', 'Plumbing'),
+        ('water-heaters', 'Water Heaters'),
     )
     field = models.CharField(max_length=30, blank=False,
                              null=False, choices=choices)
     date = models.DateTimeField(auto_now=True, null=False)
-
+    nb_request=models.IntegerField(default=1, null=False)
     def __str__(self):
         return self.name
 
@@ -47,6 +47,5 @@ class RequestServiceModel(models.Model):
     salary = models.IntegerField(default=0)
     description= models.CharField(max_length=150, null=False, default='nothing here')
     request_date = models.DateTimeField(auto_now=True, null=False)
-    nb_request=models.IntegerField(default=0)
     
     

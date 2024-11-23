@@ -61,14 +61,14 @@ def request_service(request, id):
         if form.is_valid():
             user = get_object_or_404(Customer, pk=request.user.id)
             customer = get_object_or_404(Customer, user=request.user)
-            #company = get_object_or_404(Company, user=request.user)
             service = Service.objects.get(id=id)
             name = customer.user.username
             company = service.company.user
             custom_field= service.field
             description = service.description
             job_name= service.name
-            nb_request= RequestServiceModel.objects(id=id)
+            service.nb_request += 1
+            service.save()
             RequestServiceModel.objects.create(
                 user_id=user,
                 service_id=id,
@@ -79,13 +79,12 @@ def request_service(request, id):
                 custom_field= custom_field,
                 description = description,
                 salary=form.cleaned_data['interval']*service.price_hour,
-                job_name = job_name,
-                nb_request = nb_request
+                job_name = job_name
             )
     else:
         form = RequestServiceForm()
     return render(request, 'services/request_service.html', {'form': form})
 
 def most_requested(request):
-    
-    return render(request,'services/most_requested.html')
+    services = Service.objects.order_by('-nb_request')
+    return render(request,'services/most_requested.html',{'services':services})

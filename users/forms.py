@@ -5,22 +5,17 @@ from django.core.exceptions import ValidationError
 from .models import User, Company, Customer
 
 
-FIELD_CHOICE = (('Air Conditioner', 'Air Conditioner'),
-                                                     ('All in One', 'All in One'),
-                                                     ('Carpentry', 'Carpentry'),
-                                                     ('Electricity',
-                                                      'Electricity'),
-                                                     ('Gardening', 'Gardening'),
-                                                     ('Home Machines',
-                                                      'Home Machines'),
-                                                     ('House Keeping',
-                                                      'House Keeping'),
-                                                     ('Interior Design',
-                                                      'Interior Design'),
-                                                     ('Locks', 'Locks'),
-                                                     ('Painting', 'Painting'),
-                                                     ('Plumbing', 'Plumbing'),
-                                                     ('Water Heaters', 'Water Heaters'))
+FIELD_CHOICE = (('air-conditioner', 'Air Conditioner'),
+                ('carpentry', 'Carpentry'),
+                ('electricity', 'Electricity'),
+                ('gardening', 'Gardening'),
+                ('home-machines', 'Home Machines'),
+                ('house-keeping', 'House Keeping'),
+                ('interior-design', 'Interior Design'),
+                ('locks', 'Locks'),
+                ('painting', 'Painting'),
+                ('plumbing', 'Plumbing'),
+                ('water-heaters', 'Water Heaters'))
 
 class DateInput(forms.DateInput):
     input_type = 'date'
