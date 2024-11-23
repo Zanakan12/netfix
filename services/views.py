@@ -29,21 +29,24 @@ def index(request, id):
 def create(request):
     user_id = request.user.id
     company_instance = Company.objects.get(user_id=user_id)
-    company_type = company_instance.field
+    company_type = company_instance.field  # Supposons que le nom de la compagnie est dans le champ `name`
+
     if request.method == 'POST':
-        form=CreateNewService(request.POST)
+        form = CreateNewService(request.POST, choices=FIELD_CHOICE, company_type=company_type)
         if form.is_valid():
             Service.objects.create(
                 company=company_instance,
-                name= form.cleaned_data['name'],
-                description= form.cleaned_data['description'],
-                price_hour= form.cleaned_data['price_hour'],
+                name=form.cleaned_data['name'],
+                description=form.cleaned_data['description'],
+                price_hour=form.cleaned_data['price_hour'],
                 field=form.cleaned_data['field']
             )
-        form = CreateNewService()
+            form = CreateNewService(choices=FIELD_CHOICE, company_type=company_type)
     else:
-        form=CreateNewService()
-    return render(request, 'services/create.html',{'form':form})
+        form = CreateNewService(choices=FIELD_CHOICE, company_type=company_type)
+
+    return render(request, 'services/create.html', {'form': form})
+
 
 def service_field(request, field):
     # search for the service present in the url

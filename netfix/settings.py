@@ -144,3 +144,18 @@ FIELD_CHOICE = (
         ('plumbing', 'Plumbing'),
         ('water-heaters', 'Water Heaters'),
     )
+
+ # Mapping des choix par nom de compagnie
+COMPANY_CHOICES_MAPPING = {
+            'air-conditioner': [('air-conditioner', 'Air Conditioner')],
+            'carpentry': [('carpentry', 'Carpentry')],
+            'electricity': [('electricity', 'Electricity')],
+            'gardening': [('gardening', 'Gardening')],
+            'home-machines': [('home-machines', 'Home Machines')],
+            'house-keeping': [('house-keeping', 'House Keeping')],
+            'interior-design': [('interior-design', 'Interior Design')],
+            'locks': [('locks', 'Locks')],
+            'painting': [('painting', 'Painting')],
+            'plumbing': [('plumbing', 'Plumbing')],
+            'water-heaters': [('water-heaters', 'Water Heaters')],
+        }
