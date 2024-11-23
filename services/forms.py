@@ -12,15 +12,15 @@ class CreateNewService(forms.Form):
     )
     field = forms.ChoiceField(required=True, choices=[])
 
-    def __init__(self, *args, choices=None, company_name=None, **kwargs):
+    def __init__(self, *args, choices=None, company_type=None, **kwargs):
         # Supprimez `company_name` de kwargs pour éviter une erreur
         kwargs.pop('company_name', None)
         super(CreateNewService, self).__init__(*args, **kwargs)
 
 
         # Appliquer les choix spécifiques à la compagnie
-        if company_name in COMPANY_CHOICES_MAPPING:
-            choices = COMPANY_CHOICES_MAPPING[company_name]
+        if company_type in COMPANY_CHOICES_MAPPING:
+            choices = COMPANY_CHOICES_MAPPING[company_type]
 
         # Définir les choix dans le champ `field`
         self.fields['field'].choices = choices

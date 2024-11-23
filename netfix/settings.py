@@ -132,6 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'css/')
 
 #variable
 FIELD_CHOICE = (
+        ('all-in-one', 'All in One'),
         ('air-conditioner', 'Air Conditioner'),
         ('carpentry', 'Carpentry'),
         ('electricity', 'Electricity'),
