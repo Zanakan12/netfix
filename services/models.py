@@ -4,7 +4,7 @@ from django.db import models
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from users.models import Company, Customer
-
+from netfix.settings import FIELD_CHOICE
 
 class Service(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
@@ -13,19 +13,7 @@ class Service(models.Model):
     price_hour = models.DecimalField(decimal_places=2, max_digits=100)
     rating = models.IntegerField(validators=[MinValueValidator(
         0), MaxValueValidator(5)], default=0)
-    choices = (
-        ('air-conditioner', 'Air Conditioner'),
-        ('carpentry', 'Carpentry'),
-        ('electricity', 'Electricity'),
-        ('gardening', 'Gardening'),
-        ('home-machines', 'Home Machines'),
-        ('house-keeping', 'House Keeping'),
-        ('interior-design', 'Interior Design'),
-        ('locks', 'Locks'),
-        ('painting', 'Painting'),
-        ('plumbing', 'Plumbing'),
-        ('water-heaters', 'Water Heaters'),
-    )
+    choices = FIELD_CHOICE
     field = models.CharField(max_length=30, blank=False,
                              null=False, choices=choices)
     date = models.DateTimeField(auto_now=True, null=False)

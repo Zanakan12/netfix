@@ -27,7 +27,7 @@ class CreateNewService(forms.Form):
 class RequestServiceForm(forms.Form):
     address= forms.CharField(required=True)
     interval = forms.IntegerField(initial=2, required=True, min_value=1)
-    
+
     def __init__(self, *args, choices='', ** kwargs):
         super(RequestServiceForm, self).__init__(*args, **kwargs)
         # adding placeholders to form fields

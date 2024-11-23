@@ -3,19 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, auth
 from django.db import transaction
 from django.core.exceptions import ValidationError
 from .models import User, Company, Customer
-
-
-FIELD_CHOICE = (('air-conditioner', 'Air Conditioner'),
-                ('carpentry', 'Carpentry'),
-                ('electricity', 'Electricity'),
-                ('gardening', 'Gardening'),
-                ('home-machines', 'Home Machines'),
-                ('house-keeping', 'House Keeping'),
-                ('interior-design', 'Interior Design'),
-                ('locks', 'Locks'),
-                ('painting', 'Painting'),
-                ('plumbing', 'Plumbing'),
-                ('water-heaters', 'Water Heaters'))
+from netfix.settings import FIELD_CHOICE
 
 class DateInput(forms.DateInput):
     input_type = 'date'

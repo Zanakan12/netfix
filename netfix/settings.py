@@ -129,3 +129,18 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = ['static']
 MEDIA_URL ='css/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'css/')
+
+#variable
+FIELD_CHOICE = (
+        ('air-conditioner', 'Air Conditioner'),
+        ('carpentry', 'Carpentry'),
+        ('electricity', 'Electricity'),
+        ('gardening', 'Gardening'),
+        ('home-machines', 'Home Machines'),
+        ('house-keeping', 'House Keeping'),
+        ('interior-design', 'Interior Design'),
+        ('locks', 'Locks'),
+        ('painting', 'Painting'),
+        ('plumbing', 'Plumbing'),
+        ('water-heaters', 'Water Heaters'),
+    )

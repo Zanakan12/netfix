@@ -11,13 +11,15 @@
       <th>SERVICE</th>
       <th>FIELD</th>
       <th>POSTED DATE</th>
+      <th>REQUESTED</th>
     </tr></thead>
   <tbody>
     {%for service in services%}
     <tr>
       <td ><a href="/services/{{service.id}}">{{service.name}}</a></td>
       <td><a href="/services/{{service.field}}">{{service.field}}</a></td>
-      <td>{{service.date}}</td>
+      <td>{{service.date}}</td> 
+      <td>{{service.nb_request}}</td>
     </tr>
     {% endfor %}
   </tbody>

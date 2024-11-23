@@ -6,7 +6,7 @@ from users.models import Company, Customer, User
 from .models import Service, RequestServiceModel
 from .forms import CreateNewService, RequestServiceForm
 from django.contrib import messages
-
+from netfix.settings import FIELD_CHOICE
 MESSAGE_TAGS = {
     messages.DEBUG: 'debug',
     messages.INFO: 'info',
@@ -27,11 +27,12 @@ def index(request, id):
 
 
 def create(request):
+    user_id = request.user.id
+    company_instance = Company.objects.get(user_id=user_id)
+    company_type = company_instance.field
     if request.method == 'POST':
         form=CreateNewService(request.POST)
-        user_id = request.user.id
         if form.is_valid():
-            company_instance = Company.objects.get(user_id=user_id)
             Service.objects.create(
                 company=company_instance,
                 name= form.cleaned_data['name'],
@@ -39,10 +40,9 @@ def create(request):
                 price_hour= form.cleaned_data['price_hour'],
                 field=form.cleaned_data['field']
             )
-        messages.success(request, "Votre service a été crée avec succès !")
-        return render(request,'services/field.html')
+        form = CreateNewService()
     else:
-        form=CreateNewService
+        form=CreateNewService()
     return render(request, 'services/create.html',{'form':form})
 
 def service_field(request, field):
@@ -81,10 +81,11 @@ def request_service(request, id):
                 salary=form.cleaned_data['interval']*service.price_hour,
                 job_name = job_name
             )
+            form=RequestServiceForm()
     else:
         form = RequestServiceForm()
     return render(request, 'services/request_service.html', {'form': form})
 
 def most_requested(request):
-    services = Service.objects.order_by('-nb_request')
+    services = Service.objects.order_by('-nb_request')[:3]
     return render(request,'services/most_requested.html',{'services':services})
