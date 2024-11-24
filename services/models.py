@@ -13,11 +13,13 @@ class Service(models.Model):
     price_hour = models.DecimalField(decimal_places=2, max_digits=100)
     rating = models.IntegerField(validators=[MinValueValidator(
         0), MaxValueValidator(5)], default=0)
+    nb_client_rating = models.IntegerField(default=0, null=False)
+    nb_total_rating= models.IntegerField(default=0, null=False)
     choices = FIELD_CHOICE
     field = models.CharField(max_length=30, blank=False,
                              null=False, choices=choices)
     date = models.DateTimeField(auto_now=True, null=False)
-    nb_request=models.IntegerField(default=1, null=False)
+    nb_request=models.IntegerField(default=0, null=False)
     def __str__(self):
         return self.name
 

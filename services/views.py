@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-
+from django.contrib.auth.decorators import login_required
 from users.models import Company, Customer, User
 
 from .models import Service, RequestServiceModel
 from .forms import CreateNewService, RequestServiceForm
 from django.contrib import messages
 from netfix.settings import FIELD_CHOICE
+
 MESSAGE_TAGS = {
     messages.DEBUG: 'debug',
     messages.INFO: 'info',
@@ -18,6 +19,7 @@ MESSAGE_TAGS = {
 def service_list(request):
     services = Service.objects.all().order_by("-date")
     service= Service.objects.all()
+
     return render(request, 'services/list.html', {'services': services, 'service':service})
 
 
@@ -58,6 +60,7 @@ def service_field(request, field):
 
 from django.shortcuts import get_object_or_404
 
+@login_required
 def request_service(request, id):
     if request.method == 'POST':
         form = RequestServiceForm(request.POST)
@@ -92,3 +95,13 @@ def request_service(request, id):
 def most_requested(request):
     services = Service.objects.order_by('-nb_request')[:3]
     return render(request,'services/most_requested.html',{'services':services})
+
+@login_required
+def rating(request,id):
+    service = get_object_or_404(Service,id=id )
+    if request.method=='POST':
+        service.nb_client_rating += 1
+        service.nb_total_rating += int(request.POST.get('rating',0))
+        service.rating = service.nb_total_rating/service.nb_client_rating
+        service.save()
+    return render(request, 'services/rating.html',{'service':service})

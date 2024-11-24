@@ -1,3 +1,4 @@
+/* =========================================== Global Styles ============================================ */
 body {
   background: #292929;
   font-family: 'Lexend Exa', sans-serif;
@@ -6,7 +7,7 @@ body {
 }
 
 a {
-  color: #4beed8;
+  color: #4b9aee;
   text-decoration: none;
 }
 
@@ -15,9 +16,11 @@ a:hover {
   text-shadow: 0px 0px 2px #a1a1a1;
 }
 
+/* Sélecteurs de boutons généraux */
 button:not(:last-child) {
   margin-right: 40px;
 }
+
 button {
   border: 2px solid transparent;
   border-radius: 5px;
@@ -29,6 +32,7 @@ button {
   cursor: pointer;
   margin-top: 30px;
 }
+
 button:hover {
   background: #ec4138;
   border: 2px solid #f05749;
@@ -37,6 +41,7 @@ button:hover {
   color: #f9f8fd;
 }
 
+/* Contenu principal */
 .content {
   background-color: #646464;
   margin: 0 auto;
@@ -52,6 +57,7 @@ button:hover {
   white-space: pre-line;
 }
 
+/* Bouton "like" */
 .like_button {
   background-color: white;
   border: 2px solid transparent;
@@ -72,28 +78,14 @@ button:hover {
   color: #f9f8fd;
 }
 
+/* Titre principal */
 .title {
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
   font-size: 60px;
   font-weight: bold;
-  text-decoration: 2px underline;
-  text-decoration-color: rgba(0, 255, 251, 0.37);
+  text-decoration: underline 2px rgba(0, 255, 251, 0.37);
 }
-/* ======================================== Home Page ============================================== */
-
-.home_logo {
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 70px;
-}
-
-.site_title {
-  text-align: center;
-  font-size: 70px;
-}
-
-/* ============================================================================================== */
 
 /* ======================================== Navbar ============================================== */
 
@@ -118,21 +110,25 @@ button:hover {
   padding: 0 30px;
   list-style-type: none;
 }
+
 .navbar ul li:not(:last-child) {
   margin-right: 40px;
 }
+
 .navbar ul li {
   border: 2px solid transparent;
   border-radius: 5px;
   padding: 10px;
   transition: background 0.2s;
 }
+
 .navbar ul li a {
   color: #00ecd0;
   text-decoration: none;
   text-transform: uppercase;
   transition: color 0.2s;
 }
+
 .navbar ul li ul {
   visibility: hidden;
   opacity: 0;
@@ -147,6 +143,7 @@ button:hover {
   border-radius: 5px;
   transition: opacity 0.2s, visibility 0.2s;
 }
+
 .navbar ul li ul li {
   margin: -2px 0 0 -2px;
   width: calc(100% - 20px);
@@ -159,14 +156,17 @@ button:hover {
   border-right: 2px solid #21dde0;
   border-bottom: 2px solid #21e0da;
 }
+
 .navbar ul li:hover a {
   color: #f9f8fd;
 }
+
 .navbar ul li:hover ul {
   visibility: visible;
   opacity: 1;
   box-shadow: 0px 3px 5px 2px #ebecf1;
 }
+
 .navbar ul li:hover ul li a {
   color: #f9f8fd;
 }
@@ -177,18 +177,15 @@ button:hover {
   margin-right: 20px;
 }
 
-/* ============================================================================================== */
-
 /* ======================================== Service Info ======================================== */
 
 .service_info_header {
   display: block ruby;
 }
+
 .service_info_header h5 {
   float: right;
 }
-
-/* ============================================================================================== */
 
 /* ======================================== Service List ======================================== */
 
@@ -204,9 +201,11 @@ pre {
 .service_list_info {
   padding: 0 30px;
 }
+
 .service_list_info li {
   list-style-type: none;
 }
+
 .service_list_info li a:hover > pre {
   display: block;
 }
@@ -237,15 +236,14 @@ pre {
   box-shadow: 2px 3px 6px 1px #21212173;
   transition: 0.5s;
 }
-.create_service:not(hover) {
+
+.create_service:not(:hover) {
   transition: 0.6s;
 }
 
 .list_services_profile {
   font-size: x-large;
 }
-
-/* ============================================================================================== */
 
 /* ===================================== Choose user type ======================================= */
 
@@ -269,9 +267,11 @@ pre {
   box-shadow: 0px 0px 5px 5px rgb(50, 50, 50);
   cursor: pointer;
 }
+
 .img:hover {
   box-shadow: 0px 0px 9px 5px rgb(27, 27, 27);
 }
+
 .img:active {
   background-color: #474747;
   transition: 0.1s;
@@ -282,24 +282,23 @@ pre {
   display: block;
 }
 
-/* ============================================================================================== */
-
 /* =========================================== Forms ============================================ */
 
-form label {
+/* Ne masquez plus tous les labels globalement */
+
+/* Si vous souhaitez masquer les labels dans certains formulaires, utilisez une classe spécifique */
+form.hide-labels label {
   display: none;
 }
 
+/* Formulaire général */
 form {
   margin: 0 auto;
   display: grid;
   width: 65%;
 }
 
-/* form ul {
-  display: none;
-} */
-
+/* Styles des inputs */
 form input {
   padding: 10px 3px;
   font-size: 20px;
@@ -311,11 +310,12 @@ form input {
 }
 
 form input:hover,
-input:focus {
+form input:focus {
   transition: 0.5s;
   border-bottom: 3px solid orangered;
 }
 
+/* Styles des selects */
 form select {
   display: block;
   font-size: 20px;
@@ -327,17 +327,19 @@ form select {
 }
 
 form select:focus,
-select:hover {
+form select:hover {
   transition: 0.5s;
   border-bottom: 3px solid orangered;
 }
 
+/* Messages d'erreur */
 .error_message {
   color: #ff4040;
   text-shadow: 0px 0px 10px #800;
 }
 
-form textarea {
+/* Styles des textareas généraux */
+form textarea:not(.star-rating textarea) {
   display: block;
   border: none;
   border-bottom: 3px solid black;
@@ -348,8 +350,8 @@ form textarea {
   margin-top: 30px;
 }
 
-form textarea:hover,
-textarea:focus {
+form textarea:not(.star-rating textarea):hover,
+form textarea:not(.star-rating textarea):focus {
   transition: 0.5s;
   border-bottom: 3px solid orangered;
 }
@@ -362,7 +364,7 @@ span {
   margin: 5px 0px;
 }
 
-/* =======================================Blockquote================================================= */
+/* ======================================= Blockquote ================================================ */
 
 blockquote {
   min-height: 5em;
@@ -370,4 +372,100 @@ blockquote {
   font: 1em/150% sans-serif;
   position: relative;
   background-color: #3938383d;
+}
+
+/* ====================================== Rating Page =============================================== */
+
+/* Conteneur principal */
+.rating-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Titre */
+.rating-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Formulaire */
+#rating-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Étoiles de notation */
+.star-rating {
+  direction: rtl;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  display: inline-block; /* Assurez-vous que les labels sont visibles */
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+  color: #ffca08;
+}
+
+.star-rating label:hover {
+  transform: scale(1.2);
+}
+
+/* Zone de texte */
+#rating-form textarea {
+  width: 100%;
+  max-width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  resize: vertical;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: border-color 0.3s;
+}
+
+#rating-form textarea:focus {
+  border-color: #ffca08;
+  outline: none;
+}
+
+/* Bouton de soumission */
+#rating-form button {
+  padding: 10px 20px;
+  background-color: #ffca08;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#rating-form button:hover {
+  background-color: #e6b800;
+}
+
+#rating-form button:active {
+  transform: scale(0.98);
 }
