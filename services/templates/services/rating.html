@@ -7,7 +7,7 @@
 {% block content %} 
 <body>   
 <div class="rating-container">
-    <h2>Évaluer le service {{ service.name }}</h2>
+    <h2>Rate the service: {{ service.name }}</h2>
     <form id="rating-form" method="post">
         {% csrf_token %}
         <div class="star-rating">
@@ -26,8 +26,8 @@
             <input type="radio" id="star1" name="rating" value="1">
             <label for="star1" title="1 étoile">★</label>
         </div>
-        <textarea name="review" placeholder="Laissez un commentaire (optionnel)"></textarea>
-        <button type="submit">Soumettre</button>
+        <textarea name="review" placeholder="Commit a comment (optionnal)"></textarea>
+        <button type="submit">SEND</button>
     </form>
 </div>
 <body>

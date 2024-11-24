@@ -26,19 +26,21 @@
                   <td>{{service.company.user}}</td>
                   <td>
                         {% if service.rating == 1 %}
-                            ★
+                            ⭐☆☆☆☆
                         {% else %}
                             {% if service.rating == 2 %}
-                                ★★
+                                ⭐⭐☆☆☆
                             {% else %}
                                 {% if service.rating == 3 %}
-                                    ★★★
+                                    ⭐⭐⭐☆☆
                                 {% else %}
                                     {% if service.rating == 4 %}
-                                        ★★★★
+                                        ⭐⭐⭐⭐☆
                                     {% else %}
                                         {% if service.rating == 5 %}
-                                            ★★★★★
+                                            ⭐⭐⭐⭐⭐
+                                        {%else%}
+                                            No rate yet.
                                         {% endif %}
                                     {% endif %}
                                 {% endif %}

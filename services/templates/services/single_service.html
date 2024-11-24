@@ -16,5 +16,8 @@
     </br>
     <p style="text-align: center;">{% if request.user.is_customer %}
         <a href="/services/{{service.id}}/request_service/" class="like_button">Request Service</a>
+        <p style="float: right; margin: 0;">
+            by <a href="{{service.id}}/rating">Rate this service</a>
+        </p> 
     {% endif %}
 {% endblock %}
