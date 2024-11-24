@@ -11,13 +11,11 @@
     <h2>{{service.field}}</h2>
     <p style="text-align: left;">Price_Hour: {{service.price_hour}}€/hour</p>
     <p style="text-align: left;">Creation Date: {{service.date}}</p>
-    <p style="text-align: left;">Description:
-        <blockquote border="2">{{service.description}}</blockquote>
-    </br>
+    <p style="text-align: left;">Description:<blockquote border="2">{{service.description}}</blockquote>
     <p style="text-align: center;">{% if request.user.is_customer %}
         <a href="/services/{{service.id}}/request_service/" class="like_button">Request Service</a>
         <p style="float: right; margin: 0;">
-            by <a href="{{service.id}}/rating">Rate this service</a>
+            <a href="{{service.id}}/rating">Rate this service</a>
         </p> 
     {% endif %}
 {% endblock %}
