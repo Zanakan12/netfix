@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from users.models import Company, Customer, User
+from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+from users.models import Company, Customer, User
 from .models import Service, RequestServiceModel
 from .forms import CreateNewService, RequestServiceForm
 from django.contrib import messages
@@ -17,10 +19,26 @@ MESSAGE_TAGS = {
 }
 
 def service_list(request):
-    services = Service.objects.all().order_by("-date")
-    service= Service.objects.all()
+    service_list = Service.objects.all().order_by("-date")  # Récupère tous les services, triés par date décroissante
+    paginator = Paginator(service_list, 7)  # Affiche 5 services par page
 
-    return render(request, 'services/list.html', {'services': services, 'service':service})
+    page_number = request.GET.get('page')  # Récupère le numéro de page depuis les paramètres de l'URL
+
+    try:
+        services = paginator.page(page_number)
+    except PageNotAnInteger:
+        # Si le numéro de page n'est pas un entier, affiche la première page
+        services = paginator.page(1)
+    except EmptyPage:
+        # Si le numéro de page est trop élevé, affiche la dernière page disponible
+        services = paginator.page(paginator.num_pages)
+
+    context = {
+        'services': services  # 'services' est maintenant un objet Page contenant les services de la page courante
+    }
+
+    return render(request, 'services/list.html', context)
+
 
 
 def index(request, id):
@@ -58,7 +76,7 @@ def service_field(request, field):
     return render(request, 'services/field.html', {'services': services, 'field': field})
 
 
-from django.shortcuts import get_object_or_404
+
 
 @login_required
 def request_service(request, id):

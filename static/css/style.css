@@ -476,3 +476,31 @@ blockquote {
 #rating-form button:active {
   transform: scale(0.98);
 }
+
+
+/* ====================================== Pagination =============================================== */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .pagination .page-links a, .pagination .page-links span {
+        margin: 0 3px;
+        padding: 8px 12px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        color: #333;
+    }
+    .pagination .page-links a:hover {
+        background-color: #f0f0f0;
+    }
+    .pagination .page-links .current {
+        background-color: #333;
+        color: #fff;
+        border-color: #333;
+    }
+    .pagination .page-links .disabled {
+        color: #ccc;
+        border-color: #ddd;
+    }
+
