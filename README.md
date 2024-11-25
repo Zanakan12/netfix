@@ -77,10 +77,7 @@ The project is still under development, and some features remain to be implement
   - `main`: Manages global features (homepage, navigation).
 
 ## Bonus Features
-
-To enhance the project:
-- Implement a rating system for services.
-- Add filters to simplify service searches.
+- - **OAuth:** Google API for authentication
 
 ## Technologies Used
 
