@@ -1,12 +1,17 @@
 {% extends 'main/base.html' %}
-{% block title %} LOGIN {%endblock%}
+{% load socialaccount %}
+{% block title %} LOGIN {% endblock %}
 
-{%block content%}
-
+{% block content %}
 <h2> LOG IN </h2>
 <form method="post">
     {% csrf_token %}
-    {{form}}
+    {{ form.as_p }}
     <button type="submit">ENTER</button>
 </form>
-{%endblock%}
+
+<hr>
+
+<h3>Ou connectez-vous avec :</h3>
+<a href="{% provider_login_url 'google' %}" class="google-login">Connexion avec Google</a>
+{% endblock %}

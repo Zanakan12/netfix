@@ -10,7 +10,16 @@ def home(request):
 
 def customer_profile(request,name):
     users = User.objects.get(username=name)
-    customer = Customer.objects.get(user=users)
+    
+
+    if not Customer.objects.filter(user=users).exists():
+        users.is_customer=1
+        Customer.objects.create(
+            email = users.email,
+            birth = users.birth,
+            user_id = users.id
+        )
+    customer=Customer.objects.get(user=users)
     sh = RequestServiceModel.objects.filter(user_id=customer)
     return render(request, 'users/profile.html',{'users':users, 'name':name, 'sh':sh,})
 
@@ -19,5 +28,4 @@ def company_profile(request, name):
     user = User.objects.get(username=name)
     services = Service.objects.filter(
         company=Company.objects.get(user=user)).order_by("-date")
-
     return render(request, 'users/profile.html', {'user': user, 'services': services})

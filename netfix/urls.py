@@ -19,8 +19,11 @@ from django.urls import include, path
 from . import views as v
 from services import views as vs
 from users.views import CustomLoginView
+
+#root for between template and views(handlers)
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('', include('main.urls'),name='home'),
     path('services/', include('services.urls')),
     path('register/', include('users.urls')),

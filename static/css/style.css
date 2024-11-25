@@ -504,3 +504,16 @@ blockquote {
         border-color: #ddd;
     }
 
+/* ===================== login google======================== */
+.google-login {
+  display: inline-block;
+  background-color: #4285F4;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+}
+.google-login:hover {
+  background-color: #357ae8;
+}

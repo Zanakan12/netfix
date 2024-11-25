@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.views import LoginView
+from allauth.socialaccount.models import SocialAccount
+from allauth.socialaccount.signals import social_account_added
+from django.dispatch import receiver
 
 from .forms import CustomerSignUpForm, CompanySignUpForm,CustomLoginForm
 from .models import User, Company, Customer
@@ -45,3 +48,14 @@ class CompanySignUpView(CreateView):
 class CustomLoginView(LoginView):
     template_name = 'users/login.html'  # Spécifiez le template pour la connexion
     authentication_form = CustomLoginForm  # Utilisez le formulaire personnalisé
+    
+@receiver(social_account_added)
+def set_user_as_customer(sender, request, sociallogin, **kwargs):
+    # Récupérer l'utilisateur qui vient de se connecter
+    user = sociallogin.user
+    print(user)
+    # Vérifier si la connexion provient de Google
+    if sociallogin.account.provider == 'google':
+        # Attribuer le rôle de customer
+        user.is_customer = True
+        user.save()
