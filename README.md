@@ -1,77 +1,97 @@
-# 👋 Salut ! Je suis Djihadi Raftandjani
 
-## 🔭 **Je travaille actuellement sur**  
-- Développer mes compétences en tant que développeur full-stack, en me concentrant sur **Go**, **C++**, **HTML**, et l'utilisation de **Dear ImGui** pour des projets de surveillance système.
-- **Création d'un site de location de vélos** : Développement d'une plateforme web permettant aux utilisateurs de réserver et de louer des vélos en ligne.
+# Netfix
 
-## 🌱 **J'apprends actuellement**  
-- **Go**
-- **C++**
-- **Django**
-- **HTML**
-- **CSS**
-- **SQLite**
-- **Python**
-- **Dear ImGui** pour construire des interfaces graphiques
+Netfix is a web platform that allows users to register, choose, and pay for services offered by various companies. This project is built using the Django framework.
 
-## 👯 **Je cherche à collaborer sur**  
-Des projets open-source ou des petites tâches de développement impliquant **Go**, **C++**, **HTML** ou **Dear ImGui**.
+## Project Objectives
 
-## 🤔 **Je recherche de l'aide avec**  
-- Techniques avancées en **Go**
-- Amélioration de mes connaissances sur les outils de surveillance système
-- Maîtrise de **Dear ImGui**
+Netfix aims to simplify access to various services such as:
+- Appliance repair
+- Painting
+- Cleaning
+- And much more.
 
-## 💬 **Demandez-moi à propos de**  
-- Mon parcours pour devenir développeur full-stack
-- Mon projet de forum en **Go**
-- Utilisation de **Go** pour le développement backend
-- Pratiques **HTML**
-- Comment débuter avec **SQLite** et **Dear ImGui**
+The project is still under development, and some features remain to be implemented.
 
-## 📫 **Comment me contacter**  
-Vous pouvez me joindre via zanakan12maniac@proton.me .
+## Features
 
-## 😄 **Pronoms**  
-He/Him
+- **User Types:**
+  - **Customer:** Can search, view, and request services.
+  - **Company:** Can create and offer services in specific categories.
 
-## ⚡ **Fait amusant**  
-Je suis passionné par l'apprentissage de différents dialectes, y compris le tunisien, et je suis toujours enthousiaste à l'idée de relever de nouveaux défis en programmation !
+- **Registration and Login:**
+  - Users can authenticate in two ways:
+    - Via email and password (classic).
+    - **Via Google authentication.**
+  - Required fields for classic registration:
+    - **Customer:** Email, password, username, date of birth.
+    - **Company:** Email, password, username, field of work.
 
----
+- **Personalized Profiles:**
+  - Customers can view their previous service requests.
+  - Companies display their offered services.
 
-### 📊 **Statistiques GitHub**
+- **Services:**
+  - Each service includes a name, description, hourly rate, and creation date.
+  - Companies can only offer services in their field of work.
 
-![Top Langages](https://github-readme-stats.vercel.app/api/top-langs/?username=Zanakan12&layout=compact)
-![Stats GitHub](https://github-readme-stats.vercel.app/api?username=Zanakan12&show_icons=true&count_private=true&theme=radical)
+- **Dedicated Pages:**
+  - List of services by category.
+  - Detailed page for each service.
 
----
+## Installation
 
-## 🛠 **Compétences Techniques**
+1. Clone the repository:
+   ```bash
+   git clone https://zone01normandie.org/git/draftandj/netfix.git
+   cd netfix
+   ```
 
-- **Langages de Programmation** : Go, C++, Python, HTML, CSS
-- **Frameworks et Bibliothèques** : Django, Dear ImGui
-- **Bases de Données** : SQLite
-- **Outils** : Git, GitHub, VS Code
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## 🌐 **Projets en Vedette**
+3. Configure API keys for Google authentication:
+   - Create a project in the [Google Cloud Console](https://console.cloud.google.com/).
+   - Enable the Google OAuth API.
+   - Create credentials for a web application and obtain a **Client ID** and **Client Secret**.
+   - Add these details to the environment variables or configuration file.
 
-### [Forum en Go](https://github.com/Zanakan12/forum)
-Un forum développé en Go sans utiliser JavaScript, permettant une communication efficace et une gestion robuste des utilisateurs.
+4. Apply migrations:
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
 
-### [Systeme Monitor](https://github.com/Zanakan12/system-monitor)
-Un outil de surveillance système développé avec **Dear ImGui**, offrant des interfaces graphiques intuitives pour surveiller les performances et les ressources du système.
+5. Start the server:
+   ```bash
+   python manage.py runserver
+   ```
 
-### [Netfix](https://github.com/Zanakan12/netfix)
-**Netfix** est une plateforme web qui permet aux utilisateurs de s'inscrire, de choisir et de payer pour des services offerts par diverses entreprises. Ce projet est construit en utilisant le framework **Django**.
+## Project Structure
 
-### [Site de Location de Vélos](lien-vers-votre-projet)
-Un site web permettant aux utilisateurs de réserver et de louer des vélos en ligne. Cette plateforme inclut des fonctionnalités telles que la gestion des réservations, le paiement en ligne et la gestion des disponibilités des vélos.
+- **Django Applications:**
+  - `users`: Manages user-related functionalities (registration, login, profiles, Google authentication).
+  - `services`: Manages service-related functionalities (creation, display, requests).
+  - `main`: Manages global features (homepage, navigation).
 
----
+## Bonus Features
 
-## 📈 **Suivez-moi**
+To enhance the project:
+- Implement a rating system for services.
+- Add filters to simplify service searches.
 
-- [GitHub](https://github.com/Zanakan12)
-- [LinkedIn](https://www.linkedin.com/in/votre-profil)
-- [Twitter](https://twitter.com/votre-profil)
+## Technologies Used
+
+- **Backend:** Python, Django (v3.1.14)
+- **Frontend:** HTML, CSS (using Django templates)
+- **OAuth:** Google API for authentication
+
+## Contributions
+
+Contributions are welcome. If you find any issues, feel free to submit an issue or a pull request.
+
+## Author
+
+- Djihadi Raftandjani (raftandj)
